@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/acnt
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # For dev; switch to 'validate' or migrations in prod
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Redis caching
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+
+  # Security OAuth2 client (example with GitHub)
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: your-client-id
+            client-secret: your-client-secret
+            scope: read:user
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: GitHub
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: id
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+
+  # Logstash encoder for ELK
+  logback:
+    rollingpolicy:
+      max-history: 30
+    encoder:
+      pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,loggers
