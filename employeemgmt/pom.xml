@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.1</version>
+		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gayathri.projects</groupId>
@@ -44,6 +44,11 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.jspecify</groupId>
+			<artifactId>jspecify</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -70,10 +75,6 @@
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 		</dependency>
@@ -91,6 +92,7 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
 
 
 	</dependencies>
@@ -118,13 +120,19 @@
 				</configuration>
 			</plugin>
 
+
+
 			<!-- Spring Boot packaging -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.example.SecureCrudAppApplication</mainClass>
+					<mainClass>com.gayathri.projects.employeemgmt.EmployeemgmtApplication</mainClass>
+					<image>
+						<name>mycompany/employeemgmt:latest</name>
+					</image>
 				</configuration>
+
 			</plugin>
 
 			<!-- JUnit 5 (default with Spring Boot 3.x) -->
@@ -133,6 +141,8 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
 			</plugin>
+
+
 		</plugins>
 	</build>
 

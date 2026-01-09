@@ -15,13 +15,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        cache.use_second_level_cache: false
+        cache.use_query_cache: false
 
-  # Redis caching
-  cache:
-    type: redis
-  redis:
-    host: localhost
-    port: 6379
+
+    # Redis caching
+  #cache:
+  #  type: redis
+  #redis:
+   # host: localhost
+    #port: 6379
 
   # Security OAuth2 client (example with GitHub)
   security:
@@ -29,8 +32,8 @@ spring:
       client:
         registration:
           github:
-            client-id: your-client-id
-            client-secret: your-client-secret
+            client-id: Ov23li0E5cXnBCvawi6U
+            client-secret: 44376fe47bcff9ff0ec308c5397d5827f2de48cd
             scope: read:user
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             client-name: GitHub
