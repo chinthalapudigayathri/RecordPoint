@@ -1,4 +1,4 @@
-package com.gayathri.projects;
+package com.gayathri.projects.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.security.web.SecurityFilterChain;
 //A configuration class telss spring that this class provides security rules and beans
 @Configuration
 public class SecurityConfig {
-// registers this method's return value as spring bean
+    // registers this method's return value as spring bean
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -33,3 +33,4 @@ public class SecurityConfig {
 
         return http.build();
     }
+}
