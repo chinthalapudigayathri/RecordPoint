@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.Set;
 
 @Entity
-@Table(name= "HR")
+@Table(name= "employee")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,13 +21,13 @@ public class Employee
     private Long id;
 
     @Column(nullable = false , unique = true)
-    private String Username;
+    private String username;
 
     @Column(nullable=false)
-    private String Password;
+    private String password;
 
     @Column(nullable=false)
-    private String Email;
+    private String email;
 
     //fetch the roles immediately whenever the column is called
     @ElementCollection(fetch = FetchType.EAGER)

@@ -28,9 +28,9 @@ class EmployeeServiceTest {
     @Test
     void testCreateEmployee() {
         Employee emp = Employee.builder()
-                .Username("gayathri")
-                .Password("plainpass")
-                .Email("gayathri@example.com")
+                .username("gayathri")
+                .password("plainpass")
+                .email("gayathri@example.com")
                 .roles(Set.of("ROLE_USER"))
                 .build();
 
@@ -45,7 +45,7 @@ class EmployeeServiceTest {
 
     @Test
     void testGetEmployeeById() {
-        Employee emp = Employee.builder().id(1L).Username("test").build();
+        Employee emp = Employee.builder().id(1L).username("test").build();
         when(employeeRepository.findById(1L)).thenReturn(Optional.of(emp));
 
         Employee found = employeeService.getEmployeeById(1L);
@@ -58,16 +58,16 @@ class EmployeeServiceTest {
     void testUpdateEmployee() {
         Employee existing = Employee.builder()
                 .id(1L)
-                .Username("olduser")
-                .Password(passwordEncoder.encode("oldpass"))
-                .Email("old@example.com")
+                .username("olduser")
+                .password(passwordEncoder.encode("oldpass"))
+                .email("old@example.com")
                 .roles(Set.of("ROLE_USER"))
                 .build();
 
         Employee updated = Employee.builder()
-                .Username("newuser")
-                .Password("newpass")
-                .Email("new@example.com")
+                .username("newuser")
+                .password("newpass")
+                .email("new@example.com")
                 .roles(Set.of("ROLE_ADMIN"))
                 .build();
 

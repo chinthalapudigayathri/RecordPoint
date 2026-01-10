@@ -127,7 +127,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.gayathri.projects.employeemgmt.EmployeemgmtApplication</mainClass>
+					<mainClass>com.gayathri.projects.EmployeemgmtApplication</mainClass>
 					<image>
 						<name>mycompany/employeemgmt:latest</name>
 					</image>
