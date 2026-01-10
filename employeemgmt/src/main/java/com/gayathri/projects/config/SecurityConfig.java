@@ -22,16 +22,16 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests()
-                .requestMatchers("/api/employees/**").hasRole("USER") // ✅ match controller path
-                .anyRequest().authenticated()
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/employees/**").hasRole("USER") // ✅ modern DSL
+                        .anyRequest().authenticated()
+                )
+                .oauth2Login() // ✅ no more `.and()`
                 .and()
-                .oauth2Login()
-                .and()
-                .oauth2ResourceServer()
-                .opaqueToken();// <-- use opaque token introspection
+                .oauth2ResourceServer(oauth2 -> oauth2.opaqueToken()); // ✅ modern resource server config
+
         return http.build();
     }
 
@@ -39,5 +39,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
