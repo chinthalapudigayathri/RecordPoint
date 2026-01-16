@@ -30,18 +30,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {}) // enable CORS
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").authenticated()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/api/**").permitAll()   // ✅ allow API calls
+                        .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth -> oauth
-                        // only set success URL after GitHub login completes
                         .defaultSuccessUrl("http://localhost:4200/view", true)
                 );
 
         return http.build();
     }
-
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

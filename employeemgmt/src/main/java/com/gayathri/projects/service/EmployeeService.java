@@ -54,5 +54,14 @@ public class EmployeeService
         employeeRepository.deleteById(id);
     }
 
+    @Cacheable(value = "employeesByName", key = "#name")
+    public List<Employee> searchEmployeesByName(String name) {
+        return employeeRepository.findByUsernameContainingIgnoreCase(name);
+    }
+
+
+
+
+
 
 }
